@@ -1,40 +1,39 @@
-# Java & Data Structures Practice 🚀
+# Spiral Matrix Traversal in Java 🌀
 
-A structured collection of Core Java implementations, algorithm practice problems, and Data Structures solutions developed during my engineering journey.
-
----
-
-## 📂 Repository Structure
-
-- `01-Basics/` - Control statements, loops, methods, Scanner input handling.
-- `02-Arrays-1D/` - Min/Max search, array reversals, linear search, sub-arrays.
-- `03-Arrays-2D/` - Matrix traversal, Matrix Transpose, Spiral Order Matrix.
-- `04-OOP-Concepts/` - Classes, Objects, Inheritance, and Encapsulation.
+A robust implementation of clockwise spiral order traversal for an $N \times M$ 2D matrix in Java.
 
 ---
 
-## 🧩 Key Problems Solved
-
-1. **Spiral Matrix Traversal (`SpiralOrder.java`):**
-   - Traversing $N \times M$ 2D matrices in boundary layers using four boundary pointers (`rowStart`, `rowEnd`, `colStart`, `colEnd`).
-2. **Matrix Transpose (`MatrixTranspose.java`):**
-   - Converting rows into columns with index inversion $T[j][i] = M[i][j]$.
-3. **Array Extremes (`FindMinMax.java`):**
-   - Tracking minimum and maximum values cleanly using `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+## 📌 Problem Overview
+Given a matrix of $N$ rows and $M$ columns, print all elements of the matrix in clockwise spiral order, starting from the top-left cell $(0, 0)$ and spiraling inwards toward the center.
 
 ---
 
-## ⚙️ How to Compile and Run
+## 💡 Algorithm & Approach
 
-Clone the repository and compile using standard JDK commands:
+The solution utilizes **four boundary pointers** to traverse layer by layer:
+1. `rowStart` (initialized to `0`)
+2. `rowEnd` (initialized to `N - 1`)
+3. `colStart` (initialized to `0`)
+4. `colEnd` (initialized to `M - 1`)
+
+### Traversal Steps:
+- **Left to Right:** Traverse from `colStart` to `colEnd` along `rowStart`, then increment `rowStart`.
+- **Top to Bottom:** Traverse from `rowStart` to `rowEnd` along `colEnd`, then decrement `colEnd`.
+- **Right to Left:** Check boundary condition (`rowStart <= rowEnd`), traverse from `colEnd` down to `colStart` along `rowEnd`, then decrement `rowEnd`.
+- **Bottom to Top:** Check boundary condition (`colStart <= colEnd`), traverse from `rowEnd` down to `rowStart` along `colStart`, then increment `colStart`.
+
+---
+
+## ⚙️ Edge-Case Handling & Debugging
+
+- **Negative Index Prevention:** Added explicit boundary safety guards (`if (rowStart <= rowEnd)` and `if (colStart <= colEnd)`) to eliminate `ArrayIndexOutOfBoundsException: Index -1`.
+- **Non-Square Matrices:** Seamlessly handles rectangular grids ($N \neq M$) without duplicate element visits.
+
+---
+
+## 🚀 How to Run
 
 ```bash
-# Clone the repository
-git clone [https://github.com/your-username/Java-DSA-Solutions.git](https://github.com/your-username/Java-DSA-Solutions.git)
-
-# Navigate to folder
-cd Java-DSA-Solutions
-
-# Compile and run any program
 javac SpiralOrder.java
 java SpiralOrder
